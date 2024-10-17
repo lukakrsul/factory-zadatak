@@ -20,6 +20,7 @@ class Meal extends Model
         return $this->belongsTo(Category::class);
     }
 
+
     public function ingredients()
     {
         return $this->belongsToMany(Ingredient::class, 'meal_ingredient');
@@ -27,6 +28,6 @@ class Meal extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'meal_tag'); // Corrected here
+        return $this->belongsToMany(Tag::class, 'meal_tag');
     }
 }

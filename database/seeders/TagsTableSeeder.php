@@ -15,8 +15,8 @@ class TagsTableSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-
-        foreach(range(1, 20) as $index){
+        // Create 10 tags
+        foreach(range(1, 10) as $index){
             Tag::create([
                 'slug' => $faker->unique()->word() . '-' . $faker->word() . '-' . $faker->word(),
             ]);

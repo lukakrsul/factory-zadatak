@@ -13,7 +13,7 @@ class LanguagesTableSeeder extends Seeder
      */
     public function run()
     {
-
+        // Manually insert languages
         DB::table('languages')->insert([
             ['locale' => 'en_GB', 'language' => 'English'],
             ['locale' => 'hr_HR', 'language' => 'Hrvatski (Croatian)'],

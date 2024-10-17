@@ -27,7 +27,7 @@ class MealController extends Controller
     // Extract query parameters
     $perPage = $request->input('per_page', 10);
     $tags = $request->input('tags');
-    $lang = $request->input('lang');
+    $locale = $request->input('lang');
     $with = $request->input('with'); 
     $page = $request->input('page', 1);
 
@@ -75,7 +75,7 @@ class MealController extends Controller
     // Loop through the meals and build the response manually
     foreach ($meals as $meal) {
         // Fetch translations for the specified language
-        $translatedMeal = $meal->translate($lang);
+        $translatedMeal = $meal->translate($locale);
 
         $mealData = [
             'id' => $meal->id,
@@ -89,7 +89,7 @@ class MealController extends Controller
             if($meal->category){  // Category can be NULL
                 $mealData['category'] = [
                     'id' => $meal->category->id,
-                    'title' => $meal->category->translate($lang)->title,
+                    'title' => $meal->category->translate($locale)->title,
                     'slug' => $meal->category->slug,
                 ];
             }else{
@@ -103,7 +103,7 @@ class MealController extends Controller
             foreach ($meal->tags as $tag) {
                 $mealData['tags'][] = [
                     'id' => $tag->id,
-                    'title' => $tag->translate($lang)->title,
+                    'title' => $tag->translate($locale)->title,
                     'slug' => $tag->slug,
                 ];
             }
@@ -115,7 +115,7 @@ class MealController extends Controller
             foreach ($meal->ingredients as $ingredient) {
                 $mealData['ingredients'][] = [
                     'id' => $ingredient->id,
-                    'title' => $ingredient->translate($lang)->title,
+                    'title' => $ingredient->translate($locale)->title,
                     'slug' => $ingredient->slug,
                 ];
             }

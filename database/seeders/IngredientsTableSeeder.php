@@ -15,7 +15,7 @@ class IngredientsTableSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-
+        // Create 50 ingredients
         foreach(range(1, 50) as $index){
             Ingredient::create([
                 'slug' => $faker->unique()->word() . '-' . $faker->word() . '-' . $faker->word(),

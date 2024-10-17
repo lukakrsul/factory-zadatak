@@ -15,7 +15,7 @@ class CategoriesTableSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-
+        // Create 5 categories
         foreach(range(1, 5) as $index){
             Category::create([
                 'slug'=>$faker->word().'-'.$faker->word().'-'.$faker->word(),

@@ -1,67 +1,188 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Factory - Jela Svijeta
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This API is built with Laravel, designed to manage and retrieve meals, categories, tags, and ingredients. The API supports multilingual content and allows clients to request specific relationships (e.g., ingredients, tags, and categories) through flexible query parameters.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Retrieve Meals:** Fetch meals with optional filters for tags, ingredients, and categories.
+- **Multilingual Support:** Handle translations based on the requested language.
+- **Pagination:** Control the number of meals returned per page.
+- **Eager Loading:** Use the `with` parameter to include related data like tags, ingredients, and categories.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table of Contents
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Features](#features)
+- [Packages Used](#packages-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Models & Relationships](#models--relationships)
+- [Database Schema](#database-schema)
+- [Validation](#validation)
+- [Translations](#translations)
+- [Error Handling](#error-handling)
 
-## Learning Laravel
+## Packages Used
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Faker](https://fakerphp.org/): For generating fake data in database seeders.
+- [Laravel Translatable](https://github.com/Astrotomic/laravel-translatable): For handling translations in models.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/meals-api.git
+    cd meals-api
+    ```
 
-## Laravel Sponsors
+2. **Install the dependencies:**
+    ```bash
+    composer install
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Configure your `.env` file:**
+    ```bash
+    cp .env.example .env
+    ```
+    - Setup your database configuration.
 
-### Premium Partners
+4. **Run database migration and seeder:**
+    ```bash
+    php artisan migrate --seed
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. **Start the development server:**
+    ```bash
+    php artisan serve
+    ```
 
-## Contributing
+## Usage
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Example request:**
+    ```
+    .../meals?per_page=2&tags=4&lang=en_GB&with=category,ingredients,tags&page=1
+    ```
 
-## Code of Conduct
+- **Example response:**
+    ```json
+    {
+      "meta": {
+        "currentPage": 1,
+        "totalItems": 4,
+        "itemsPerPage": 2,
+        "totalPages": 2
+      },
+      "data": [
+        {
+          "id": 6,
+          "title": "I'm sure.",
+          "description": "Who ever saw in my time, but.",
+          "status": "created",
+          "category": {
+            "id": 1,
+            "title": "But they.",
+            "slug": "aut-aliquid-eveniet"
+          },
+          "tags": [
+            {
+              "id": 4,
+              "title": "HAVE you.",
+              "slug": "nesciunt-maiores-ea"
+            },
+            {
+              "id": 8,
+              "title": "Alice as.",
+              "slug": "est-voluptatum-repellat"
+            },
+            {
+              "id": 3,
+              "title": "The door.",
+              "slug": "sapiente-non-et"
+            }
+          ],
+          "ingredients": [
+            {
+              "id": 15,
+              "title": "Alice to.",
+              "slug": "dolores-architecto-iusto"
+            },
+            {
+              "id": 22,
+              "title": "Five and.",
+              "slug": "occaecati-necessitatibus-sed"
+            }
+          ]
+        }
+      ],
+      "links": {
+        "prev": null,
+        "next": "http://127.0.0.1:8000/meals?page=2",
+        "self": "http://127.0.0.1:8000/meals?page=1"
+      }
+    }
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## API Endpoints
 
-## Security Vulnerabilities
+**Retrieve a paginated list of meals**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Query parameters:**
 
-## License
+- `per_page` (optional): number of meals per page.
+- `tags` (optional): filter by tag ID.
+- `lang` (required): language code for translation (e.g., `en_GB`, `hr_HR`, `de_DE`).
+- `with` (optional): Include related data (comma-separated values, e.g., `category`, `tags`, `ingredients`).
+- `page` (optional): Page number of pagination.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# factory-zadatak
+## Models & Relationships
+
+- **Meal:**
+  - Relationships: `belongsTo` Category, `belongsToMany` Tags, `belongsToMany` Ingredients
+- **Category:**
+  - Relationships: `hasMany` Meals
+- **Tag:**
+  - Relationships: `belongsToMany` Meals
+- **Ingredient:**
+  - Relationships: `belongsToMany` Meals
+
+## Database Schema
+
+| Table             | Columns                             |
+|-------------------|-------------------------------------|
+| meals             | id, title, description, status, category_id |
+| meal_translations | id, meal_id, locale, title, description |
+| categories        | id, title, slug                     |
+| category_translations | id, category_id, locale, title |
+| ingredients       | id, title, slug                     |
+| ingredient_translations | id, ingredient_id, locale, title |
+| tags              | id, title, slug                     |
+| tag_translations  | id, tag_id, locale, title           |
+| meal_tag          | meal_id, tag_id                     |
+| meal_ingredient   | meal_id, ingredient_id              |
+
+## Validation
+
+- `per_page`: Integer between 1 and 100.
+- `tags`: Nullable integer.
+- `lang`: Required string.
+- `with`: Nullable string.
+- `page`: Integer with a minimum value of 1.
+
+## Translations
+
+Translations are handled via the `translate($lang)` method, and available languages are stored in the translation tables.
+
+## Error Handling
+
+If validation fails or any other error occurs, the API returns a 400 or 500 response with an appropriate error message.
+
+**Example Error Response:**
+```json
+{
+    "per_page": [
+        "The per_page must be an integer."
+    ],
+    "lang": [
+        "The lang field is required."
+    ]
+}

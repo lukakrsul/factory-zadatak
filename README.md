@@ -60,7 +60,7 @@ This API is built with Laravel, designed to manage and retrieve meals, categorie
 
 - **Example request:**
     ```
-    GET /meals?per_page=2&tags=4&lang=en_GB&with=category,ingredients,tags&page=1
+    .../meals?per_page=2&tags=4&lang=en_GB&with=category,ingredients,tags&page=1
     ```
 
 - **Example response:**

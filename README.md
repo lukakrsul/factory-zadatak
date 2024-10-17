@@ -151,18 +151,19 @@ This API is built with Laravel, designed to manage and retrieve meals, categorie
 
 ## Database Schema
 
-| Table             | Columns                             |
-|-------------------|-------------------------------------|
-| meals             | id, title, description, status, category_id |
-| meal_translations | id, meal_id, locale, title, description |
-| categories        | id, title, slug                     |
-| category_translations | id, category_id, locale, title |
-| ingredients       | id, title, slug                     |
-| ingredient_translations | id, ingredient_id, locale, title |
-| tags              | id, title, slug                     |
-| tag_translations  | id, tag_id, locale, title           |
-| meal_tag          | meal_id, tag_id                     |
-| meal_ingredient   | meal_id, ingredient_id              |
+| Command | Description |
+| --- | --- |
+| meals | ID, status, category_id, created_at, updated_at |
+| meal_translations | ID, meal_id, locale, title, description |
+| categories | ID, slug, created_at, updated_at |
+| category_translations | ID, category_id, locale, title |
+| ingredients | ID, slug, created_at, updated_at |
+| ingredient_translations | ID, ingredient_id, locale, title |
+| tags | ID, slug, created_at, updated_at |
+| tag_translations | ID, tag_id, locale, title |
+| languages | ID, locale, language, created_at, updated_at |
+| meal_ingredient | ID, meal_id, ingredient_id |
+| meal_tag | ID, meal_id, tag_id |
 
 ## Validation
 

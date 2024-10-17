@@ -44,13 +44,18 @@ This API is built with Laravel, designed to manage and retrieve meals, categorie
     cp .env.example .env
     ```
     - Setup your database configuration.
+  
+4. **Generate the application key:**
+    ```bash
+    php artisan key:generate
+    ```
 
-4. **Run database migration and seeder:**
+5. **Run database migration and seeder:**
     ```bash
     php artisan migrate --seed
     ```
 
-5. **Start the development server:**
+6. **Start the development server:**
     ```bash
     php artisan serve
     ```

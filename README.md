@@ -31,8 +31,7 @@ This API is built with Laravel, designed to manage and retrieve meals, categorie
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/meals-api.git
-    cd meals-api
+    git clone https://github.com/lukakrsul/factory-zadatak.git
     ```
 
 2. **Install the dependencies:**
